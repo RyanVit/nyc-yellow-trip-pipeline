@@ -103,15 +103,6 @@ nyc-yellow-trip-pipeline/
 
 ---
 
-## 🧠 Decisões Tomadas
-
-- Adoção da arquitetura de camadas (Bronze → Silver → Gold).
-- Processamento distribuído com PySpark.
-- Escolha do formato Delta Lake por suportar ACID, evolução de schema e versionamento.
-- Padronização de nomes e enriquecimento com colunas descritivas para melhor análise.
-
----
-
 ### 🧠 Descrição das Decisões Tomadas
 
 1. **Arquitetura em Camadas (Medallion Architecture):**
@@ -143,12 +134,9 @@ nyc-yellow-trip-pipeline/
 
 ---
 
----
 
 ## 📎 Próximos Passos (Sugeridos)
 
-- Automatizar execução via Databricks Workflows
-- Agendar execuções mensais com clusters
 - Conectar com ferramentas de dashboard (Power BI, Tableau, etc.)
 - Aplicar modelos de previsão de demanda
 
