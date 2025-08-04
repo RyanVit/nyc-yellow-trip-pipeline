@@ -25,15 +25,19 @@ O objetivo é demonstrar boas práticas de engenharia de dados com automação, 
 nyc-yellow-trip-pipeline/
 │
 ├── 01_bronze_ingestion/
-│   └── ingestion_2025.py       # Ingestão mensal com retry
+│   └── ingestion_2025.py
 │
 ├── 02_silver_transformation/
-│   └── cleaning_transformation.py # Limpeza e enriquecimento
+│   └── cleaning_transformation.py
 │
 ├── 03_gold_analysis/
-│   └── analytical_tables.py   # Tabelas analíticas agregadas
+│   ├── analytical_tables.py
+│   └── docs/
+│       ├── monthly_revenue_table.png
+│       ├── payment_method_table.png
+│       └── revenue_by_day_table.png
 │
-├── pipeline_en.py             # Notebook orquestrador (executa todas as camadas)
+├── pipeline_en.py
 └── README.md
 ```
 
