@@ -123,11 +123,6 @@ nyc-yellow-trip-pipeline/
 
 ---
 
-
-Claro! Aqui está a mesma seção reescrita na **primeira pessoa**, como se você mesmo estivesse alertando outras pessoas que forem usar ou manter seu projeto:
-
----
-
 ### ⚠️ Atenção: Problemas com Incompatibilidade de Tipos em Arquivos Parquet
 
 Durante o desenvolvimento deste projeto, enfrentei erros ao tentar ler ou gravar múltiplos arquivos Parquet com o Spark. A causa foi a **incompatibilidade de tipos entre os arquivos**, mesmo quando os nomes e estruturas pareciam semelhantes.
