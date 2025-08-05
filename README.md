@@ -157,39 +157,6 @@ tinham tipos diferentes entre os arquivos — `integer` em um e `double` ou `lon
 
 ---
 
-### ✅ Como resolvi
-
-Para garantir consistência no schema e evitar esses erros, incluí uma etapa de conversão de tipos logo após a leitura dos dados:
-
-```python
-from pyspark.sql.functions import col
-from pyspark.sql.types import DoubleType, LongType, StringType
-
-df = df \
-    .withColumn("RatecodeID", col("RatecodeID").cast(DoubleType())) \
-    .withColumn("payment_type", col("payment_type").cast(LongType())) \
-    .withColumn("PULocationID", col("PULocationID").cast(LongType())) \
-    .withColumn("DOLocationID", col("DOLocationID").cast(LongType())) \
-    .withColumn("store_and_fwd_flag", col("store_and_fwd_flag").cast(StringType()))
-```
-
-Outra abordagem que usei em alguns casos foi **definir explicitamente o schema** no momento da leitura:
-
-```python
-df = spark.read.schema(schema_padrao).parquet(bronze_path)
-```
-
----
-
-### 🔍 Dica final
-
-Sempre valido o schema com `df.printSchema()` antes de gravar os dados nas camadas Bronze, Silver ou Gold. Isso ajuda a evitar dores de cabeça futuras com tipos conflitantes.
-
----
-
-Se quiser, posso salvar esse trecho diretamente em um arquivo `README.md` para você. Deseja isso?
-
----
 
 ## 👨‍💻 Autor
 
