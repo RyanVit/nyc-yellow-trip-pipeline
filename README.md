@@ -139,10 +139,70 @@ nyc-yellow-trip-pipeline/
 ---
 
 
-## 📎 Próximos Passos (Sugeridos)
+Claro! Aqui está a mesma seção reescrita na **primeira pessoa**, como se você mesmo estivesse alertando outras pessoas que forem usar ou manter seu projeto:
 
-- Conectar com ferramentas de dashboard (Power BI, Tableau, etc.)
-- Aplicar modelos de previsão de demanda
+---
+
+### ⚠️ Atenção: Problemas com Incompatibilidade de Tipos em Arquivos Parquet
+
+Durante o desenvolvimento deste projeto, enfrentei erros ao tentar ler ou gravar múltiplos arquivos Parquet com o Spark. A causa foi a **incompatibilidade de tipos entre os arquivos**, mesmo quando os nomes e estruturas pareciam semelhantes.
+
+Por exemplo, ao tentar fazer `append` em tabelas ou unir arquivos como `yellow_tripdata_2023-01.parquet` e `yellow_tripdata_2023-02.parquet`, o Spark apresentou erros como:
+
+```
+Expected Spark type: double
+Actual Parquet type: int
+```
+
+Ou:
+
+```
+Expected Spark type: StringType
+Actual Parquet type: INT32
+```
+
+Esses erros ocorreram porque colunas como:
+
+* `RatecodeID`
+* `payment_type`
+* `PULocationID`, `DOLocationID`
+* `store_and_fwd_flag`
+
+tinham tipos diferentes entre os arquivos — `integer` em um e `double` ou `long` em outro, por exemplo.
+
+---
+
+### ✅ Como resolvi
+
+Para garantir consistência no schema e evitar esses erros, incluí uma etapa de conversão de tipos logo após a leitura dos dados:
+
+```python
+from pyspark.sql.functions import col
+from pyspark.sql.types import DoubleType, LongType, StringType
+
+df = df \
+    .withColumn("RatecodeID", col("RatecodeID").cast(DoubleType())) \
+    .withColumn("payment_type", col("payment_type").cast(LongType())) \
+    .withColumn("PULocationID", col("PULocationID").cast(LongType())) \
+    .withColumn("DOLocationID", col("DOLocationID").cast(LongType())) \
+    .withColumn("store_and_fwd_flag", col("store_and_fwd_flag").cast(StringType()))
+```
+
+Outra abordagem que usei em alguns casos foi **definir explicitamente o schema** no momento da leitura:
+
+```python
+df = spark.read.schema(schema_padrao).parquet(bronze_path)
+```
+
+---
+
+### 🔍 Dica final
+
+Sempre valido o schema com `df.printSchema()` antes de gravar os dados nas camadas Bronze, Silver ou Gold. Isso ajuda a evitar dores de cabeça futuras com tipos conflitantes.
+
+---
+
+Se quiser, posso salvar esse trecho diretamente em um arquivo `README.md` para você. Deseja isso?
 
 ---
 
