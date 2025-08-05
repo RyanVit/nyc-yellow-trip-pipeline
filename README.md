@@ -92,21 +92,6 @@ nyc-yellow-trip-pipeline/
 
 ---
 
-## 🖼️ Exemplos de Saídas Visuais
-
-### Faturamento Mensal por Empresa
-![Faturamento Mensal](https://raw.githubusercontent.com/seuusuario/nyc-yellow-trip-pipeline/main/docs/monthly_revenue_table.png)
-
-### Corridas por Tipo de Pagamento
-![Pagamento](https://raw.githubusercontent.com/seuusuario/nyc-yellow-trip-pipeline/main/docs/payment_method_table.png)
-
-### Faturamento por Dia
-![Por Dia](https://raw.githubusercontent.com/seuusuario/nyc-yellow-trip-pipeline/main/docs/revenue_by_day_table.png)
-
-> ℹ️ *As imagens são apenas exemplos. Substitua pelos prints reais salvos na pasta `/docs/` do repositório.*
-
----
-
 ### 🧠 Descrição das Decisões Tomadas
 
 1. **Arquitetura em Camadas (Medallion Architecture):**
