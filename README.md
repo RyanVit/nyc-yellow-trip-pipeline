@@ -146,6 +146,14 @@ Esses erros ocorreram porque colunas como:
 
 tinham tipos diferentes entre os arquivos — `integer` em um e `double` ou `long` em outro, por exemplo.
 
+###✅ Como resolvi os problemas de incompatibilidade de tipos no Spark
+Para resolver esse problema, optei por ler e tratar cada arquivo individualmente, forçando os tipos de colunas mais críticas com o método .cast(). Dessa forma, todos os arquivos ficam com um schema padronizado antes de serem unidos. O processo foi implementado da seguinte forma:
+
+python
+Copiar
+Editar
+
+
 ---
 
 
